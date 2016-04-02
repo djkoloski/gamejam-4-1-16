@@ -128,6 +128,7 @@ public class Level : MonoBehaviour
 	}
 	private DialogueHook GetDialogueHook(int rockCount, TurnStage turnStage)
 	{
+
 		foreach (DialogueHook dialogueHook in CurrentGameDefinition.dialogueHooks)
 		{
 			if (dialogueHook.rockCount == rockCount && dialogueHook.turnStage == turnStage)
