@@ -12,6 +12,10 @@ public class Board : MonoBehaviour
 	public Pile opponentPile;
 	public Pile playerPile;
 
+	public List<Pile> Piles
+	{
+		get { return piles_; }
+	}
 	public bool AreAllPilesEmpty
 	{
 		get

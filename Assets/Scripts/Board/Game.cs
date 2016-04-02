@@ -28,6 +28,8 @@ public class Game : MonoBehaviour
 
 	// Public variables
 	public Board board;
+	public PlayerHand playerHand;
+	public EnemyHand enemyHand;
 
 	// Private variables
 	private State state_;
@@ -82,12 +84,15 @@ public class Game : MonoBehaviour
 			case State.PlayerTurn:
 				ResetForNextTurn();
 
-				// TODO: activate player and wait for them
+				Debug.Log("Player turn");
+				playerHand.Reach(PlayerOnGrabRock);
 				break;
 			case State.OpponentTurn:
+				Debug.Log("Opponent turn");
 				ResetForNextTurn();
 
-				// TODO: activate opponent, make decision for them, and do it
+				Rock rock = board.Piles[0].GetRandomRockInPile();
+				enemyHand.Reach(rock.transform.position, OpponentGrabRockAndRetract);
 				break;
 			default:
 				break;
@@ -200,5 +205,26 @@ public class Game : MonoBehaviour
 
 		chosenPile_ = null;
 		takenRocks_ = 0;
+	}
+	private void OpponentGrabRockAndRetract()
+	{
+		enemyHand.Grab();
+		enemyHand.setPilePos(board.opponentPile.transform.position);
+		enemyHand.Retract(OpponentReleaseRockAndPass);
+	}
+	private void OpponentReleaseRockAndPass()
+	{
+		enemyHand.Release();
+		AdvanceTurn();
+		enemyHand.Inactive();
+	}
+	private void PlayerOnGrabRock()
+	{
+		Debug.Log("Player grabbed a rock!");
+		playerHand.Retract(PlayerOnReleaseRock);
+	}
+	private void PlayerOnReleaseRock()
+	{
+		Debug.Log("Player released a rock!");
 	}
 }

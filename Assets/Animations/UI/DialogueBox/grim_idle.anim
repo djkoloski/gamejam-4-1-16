@@ -19,7 +19,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f6bab7a8ca786a142886b002dfd5188d, type: 3}
+      value: {fileID: 21300002, guid: f6bab7a8ca786a142886b002dfd5188d, type: 3}
     attribute: m_Sprite
     path: SpeakerSprite
     classID: 114
@@ -38,7 +38,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: f6bab7a8ca786a142886b002dfd5188d, type: 3}
+    - {fileID: 21300002, guid: f6bab7a8ca786a142886b002dfd5188d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

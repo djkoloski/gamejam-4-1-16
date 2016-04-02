@@ -47,19 +47,5 @@ public class RockPicker : MonoBehaviour
 	{
 		if (heldRock_ != null)
 			heldRock_.SetTarget(transform.position);
-
-		// TODO: remove
-		transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-		if (Input.GetMouseButtonDown(0))
-		{
-			Debug.Log("Trying to grab a rock");
-			GrabRock();
-		}
-		if (Input.GetMouseButtonUp(0))
-		{
-			Debug.Log("Trying to release a rock");
-			ReleaseRock();
-		}
 	}
 }

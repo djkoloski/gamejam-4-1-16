@@ -35,6 +35,10 @@ public class Pile : MonoBehaviour
 	{
 		rocks_.Remove(rock);
 	}
+	public Rock GetRandomRockInPile()
+	{
+		return rocks_[Mathf.FloorToInt(Random.value * rocks_.Count)];
+	}
 	public Vector2 GetRandomPointInPile()
 	{
 		float r = Random.value;
@@ -45,35 +49,4 @@ public class Pile : MonoBehaviour
 			transform.position.y + radius * Mathf.Sqrt(r) * Mathf.Sin(theta)
 		);
 	}
-
-	/*
-	// Update
-	void Update()
-	{
-		// TODO: move this check into rock
-		Vector3 mouse2world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-		Vector2 mouseCheck = new Vector2(mouse2world.x, mouse2world.y);
-
-		// On click, the player cursor must be over the Pile and there must be rocks here
-		if (Input.GetMouseButtonDown(0) && this.GetComponent<BoxCollider2D>().OverlapPoint(mouseCheck) && numRocks > 0)
-		{
-			rockGrabbed = true;
-		}
-
-		// Check for leftMouse is released
-		if (Input.GetMouseButtonUp(0) && rockGrabbed)
-		{
-			// If this was released over a player pile
-			if (pileCheck(mouseCheck))
-			{
-				this.removeRocks();
-				this.GetComponentInParent<Board>().PlayerPile.GetComponentInParent<PlayerPile>().addRocks();
-				this.GetComponentInParent<Board>().setPileLock(this.gameObject);
-			}
-
-			rockGrabbed = false;
-		}
-	}
-	*/
 }
