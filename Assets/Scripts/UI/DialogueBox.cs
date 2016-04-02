@@ -57,6 +57,7 @@ public class DialogueBox : MonoBehaviour
 
 	// Public variables
 	public Text text;
+    public AudioSource speakSrc;
 
 	// Private variables
 	private State state_;
@@ -126,7 +127,8 @@ public class DialogueBox : MonoBehaviour
 	// Public interface
 	public void Speak(DialogueLine line, Callback callback)
 	{
-		line_ = line;
+        //speakSrc.Play();
+        line_ = line;
 		callback_ = callback;
 		TransitionState(State.Speaking);
 	}
@@ -138,7 +140,8 @@ public class DialogueBox : MonoBehaviour
 	// Private interface
 	private void SetDialogueLength(int length)
 	{
-		dialogueLength_ = Mathf.Min(line_.text.Length, length);
+        speakSrc.Play();
+        dialogueLength_ = Mathf.Min(line_.text.Length, length);
 		text.text = line_.text.Substring(0, dialogueLength_).Replace("`", "");
 	}
 

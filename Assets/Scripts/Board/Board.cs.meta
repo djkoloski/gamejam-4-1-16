@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 0fed88302270fdc44a8650eaa39be9fc
-timeCreated: 1459553941
+timeCreated: 1459629924
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pilePrefab: {instanceID: 0}
+  - rockPrefab: {instanceID: 0}
+  - opponentPile: {instanceID: 0}
+  - playerPile: {instanceID: 0}
+  - pickupSrc: {fileID: 8203064, guid: af8bd8813049beb41b2352a2fb163788, type: 2}
+  - dropSrc: {fileID: 8299436, guid: 3947b142a6c13c546b774a73c3590982, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

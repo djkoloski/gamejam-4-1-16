@@ -12,7 +12,10 @@ public class Board : MonoBehaviour
 	public Pile opponentPile;
 	public Pile playerPile;
 
-	public List<Pile> Piles
+    public AudioSource pickupSrc;
+    public AudioSource dropSrc;
+
+    public List<Pile> Piles
 	{
 		get { return piles_; }
 	}
@@ -81,10 +84,15 @@ public class Board : MonoBehaviour
 	}
 	public Rock GetRockNearPoint(Vector2 point, float distance)
 	{
-		foreach (Rock rock in rocks_)
-			if (rock.IsWithinDistanceOfPoint(point, distance))
-				return rock;
-		return null;
+        foreach (Rock rock in rocks_)
+        {
+            if (rock.IsWithinDistanceOfPoint(point, distance))
+            {
+                pickupSrc.Play();
+                return rock;
+            }
+        }
+            return null;
 	}
 	public Pile GetPileUnderPoint(Vector2 point)
 	{
@@ -105,7 +113,7 @@ public class Board : MonoBehaviour
 			float distance = GetPileDistance(point, playerPile);
 			if (nearestPile == null || distance < nearestDistance)
 			{
-				nearestPile = playerPile;
+                nearestPile = playerPile;
 				nearestDistance = distance;
 			}
 		}
@@ -120,7 +128,8 @@ public class Board : MonoBehaviour
 			}
 		}
 
-		return nearestPile;
+        dropSrc.Play();
+        return nearestPile;
 	}
 
 	// Private interface

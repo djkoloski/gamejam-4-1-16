@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.23, z: 0}
+  m_LocalPosition: {x: 0, y: 3.08, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 440662}
@@ -127,6 +127,8 @@ MonoBehaviour:
   rockPrefab: {fileID: 169808, guid: ce8bea815e926f047aa4b7103ef362d4, type: 2}
   opponentPile: {fileID: 11479914}
   playerPile: {fileID: 11489426}
+  pickupSrc: {fileID: 8203064, guid: af8bd8813049beb41b2352a2fb163788, type: 2}
+  dropSrc: {fileID: 8299436, guid: 3947b142a6c13c546b774a73c3590982, type: 2}
 --- !u!212 &21204528
 SpriteRenderer:
   m_ObjectHideFlags: 1
