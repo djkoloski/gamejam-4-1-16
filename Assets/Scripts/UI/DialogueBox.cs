@@ -18,7 +18,10 @@ public class DialogueLine
 
 public enum DialogueSpeaker
 {
-	Grim
+	Grim,
+	Murderer,
+	Mother,
+	Teenager
 }
 
 public static class DialogueSpeakerExtension
@@ -29,6 +32,12 @@ public static class DialogueSpeakerExtension
 		{
 			case DialogueSpeaker.Grim:
 				return "grim";
+			case DialogueSpeaker.Murderer:
+				return "murderer";
+			case DialogueSpeaker.Mother:
+				return "mother";
+			case DialogueSpeaker.Teenager:
+				return "teenager";
 			default:
 				throw new System.NotImplementedException();
 		}
