@@ -5,7 +5,7 @@ public class EnemyHand : MonoBehaviour {
 
 	public RockPicker rockPicker;
 
-	private Vector2 goalPos;	 // The target pos of the hand
+	private Transform goalTransform;	 // The target pos of the hand
 	public Vector2 pilePos;	 // The pos of the pile where we place rocks
 
 	private Vector2 startPos;   // The off screen position we start at
@@ -52,9 +52,9 @@ public class EnemyHand : MonoBehaviour {
 	}
 
 	// Public call to this function to begin reaching toward a rock
-	public void Reach(Vector2 pos, Callback callback)
+	public void Reach(Transform goal, Callback callback)
 	{
-		goalPos = pos;
+		goalTransform = goal;
 		TransitionState(State.Reaching);
 		callback_ = callback;
 	}
@@ -103,9 +103,9 @@ public class EnemyHand : MonoBehaviour {
 				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
 				break;
 			case State.Reaching:
-				MoveUtil.AccelerateClampedToward2D(rigidbody_, goalPos, accel, maxAccel, maxVel, timetoreach);
+				MoveUtil.AccelerateClampedToward2D(rigidbody_, goalTransform.position, accel, maxAccel, maxVel, timetoreach);
 				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
-				if (Vector2.Distance(transform.position, goalPos) <= tolerance && callback_ != null)
+				if (Vector2.Distance(transform.position, goalTransform.position) <= tolerance && callback_ != null)
 					callback_();
 				break;
 			case State.Retracting:

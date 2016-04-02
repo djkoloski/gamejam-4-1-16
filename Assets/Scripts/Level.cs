@@ -11,7 +11,7 @@ public enum TurnStage
 public class DialogueHook
 {
 	public TurnStage turnStage;
-	public int stoneCount;
+	public int rockCount;
 	public Dialogue dialogue;
 
 	public bool Triggered
@@ -46,30 +46,32 @@ public class Level : MonoBehaviour
 	public static Level instance;
 
 	// Public variables
-	public List<DialogueHook> dialogueHooks;
+	public List<GameDef> gameDefinitions;
 
 	public bool Paused
 	{
 		get { return paused_; }
 	}
+	public GameDef CurrentGameDefinition
+	{
+		get { return gameDefinitions[currentGameDefinitionIndex_]; }
+	}
 
 	// Private variables
 	private bool paused_;
-	private List<bool> dialogueHooksTriggered_;
 	private DialogueManager dialogueManager_;
 	private List<Rock> rocks_;
+	private int currentGameDefinitionIndex_;
 
 	// Initialization
 	public void Awake()
 	{
 		instance = this;
 
-		foreach (DialogueHook dialogueHook in dialogueHooks)
-			dialogueHook.ResetTrigger();
-
 		paused_ = false;
 		dialogueManager_ = GetComponent<DialogueManager>();
 		rocks_ = new List<Rock>();
+		currentGameDefinitionIndex_ = 0;
 	}
 
 	// Public interface
@@ -81,47 +83,81 @@ public class Level : MonoBehaviour
 	{
 		paused_ = false;
 	}
-	public void OnStoneGrabbed()
+	public void OnRockGrabbed()
 	{
-		RunHookedDialogue(Game.instance.board.StonesLeft, TurnStage.Grab);
+		RunHookedDialogue(Game.instance.board.RocksLeft, TurnStage.Grab);
 	}
-	public void OnStoneReleased()
+	public void OnRockReleased()
 	{
-		RunHookedDialogue(Game.instance.board.StonesLeft, TurnStage.Release);
+		RunHookedDialogue(Game.instance.board.RocksLeft, TurnStage.Release);
 	}
 	public void OnDialogueHookFinished()
 	{
 		Unpause();
 	}
+	public void OnGameFinished(Player winner)
+	{
+		switch (winner)
+		{
+			case Player.Player:
+				Debug.Log("Player wins!");
+				AdvanceToNextGame();
+				break;
+			case Player.Opponent:
+				Debug.Log("Opponent wins!");
+				AdvanceToNextGame();
+				break;
+			default:
+				throw new System.InvalidOperationException();
+		}
+	}
+	public void OnAllGamesFinished()
+	{
+		Debug.Log("All games finished!");
+	}
 
 	// Private interface
-	private void RunHookedDialogue(int stoneCount, TurnStage turnStage)
+	private void RunHookedDialogue(int rockCount, TurnStage turnStage)
 	{
-		DialogueHook dialogueHook = GetDialogueHook(stoneCount, turnStage);
-		Debug.Log("Hook: " + dialogueHook);
+		DialogueHook dialogueHook = GetDialogueHook(rockCount, turnStage);
 		if (dialogueHook != null && !dialogueHook.Triggered)
 		{
-			Debug.Log("Triggering dialogue");
 			dialogueHook.Trigger();
 			Pause();
 			dialogueManager_.BeginDialogue(dialogueHook.dialogue, OnDialogueHookFinished);
 		}
 	}
-	private DialogueHook GetDialogueHook(int stoneCount, TurnStage turnStage)
+	private DialogueHook GetDialogueHook(int rockCount, TurnStage turnStage)
 	{
-		foreach (DialogueHook dialogueHook in dialogueHooks)
+		foreach (DialogueHook dialogueHook in CurrentGameDefinition.dialogueHooks)
 		{
-			if (dialogueHook.stoneCount == stoneCount && dialogueHook.turnStage == turnStage)
+			if (dialogueHook.rockCount == rockCount && dialogueHook.turnStage == turnStage)
 				return dialogueHook;
 		}
 		return null;
+	}
+	private void AdvanceToNextGame()
+	{
+		++currentGameDefinitionIndex_;
+		if (currentGameDefinitionIndex_ >= gameDefinitions.Count)
+			OnAllGamesFinished();
+		else
+			StartGame();
+	}
+	private void StartGame()
+	{
+		Game.instance.BeginNim(CurrentGameDefinition.gameType, CurrentGameDefinition.rockCounts, CurrentGameDefinition.startingPlayer, CurrentGameDefinition.mistakeChance);
 	}
 
 	// Update
 	public void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Q))
-			Game.instance.BeginBasicNim(15, Player.Player);
+		{
+			currentGameDefinitionIndex_ = 0;
+			StartGame();
+		}
+
 		if (Input.GetKeyDown(KeyCode.Tab) && Game.instance.CanAdvanceTurn())
 			Game.instance.AdvanceTurn();
 	}

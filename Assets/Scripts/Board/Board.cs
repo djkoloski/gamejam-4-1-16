@@ -16,7 +16,7 @@ public class Board : MonoBehaviour
 	{
 		get { return piles_; }
 	}
-	public int StonesLeft
+	public int RocksLeft
 	{
 		get
 		{
@@ -28,7 +28,7 @@ public class Board : MonoBehaviour
 	}
 	public bool AreAllPilesEmpty
 	{
-		get { return StonesLeft == 0; }
+		get { return RocksLeft == 0; }
 	}
 
 	// Private variables
