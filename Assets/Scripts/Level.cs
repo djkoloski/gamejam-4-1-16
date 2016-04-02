@@ -13,6 +13,22 @@ public class DialogueHook
 	public TurnStage turnStage;
 	public int stoneCount;
 	public Dialogue dialogue;
+
+	public bool Triggered
+	{
+		get { return triggered_; }
+	}
+
+	private bool triggered_;
+
+	public void ResetTrigger()
+	{
+		triggered_ = false;
+	}
+	public void Trigger()
+	{
+		triggered_ = true;
+	}
 }
 
 public class Level : MonoBehaviour
@@ -26,6 +42,9 @@ public class Level : MonoBehaviour
 		LevelOutro
 	}
 
+	// Static variables
+	public static Level instance;
+
 	// Public variables
 	public List<DialogueHook> dialogueHooks;
 
@@ -33,28 +52,24 @@ public class Level : MonoBehaviour
 	{
 		get { return paused_; }
 	}
-	public int StoneCount
-	{
-		get { return 0; }
-	}
 
 	// Private variables
 	private bool paused_;
-	private int currentDialogueHookIndex_;
+	private List<bool> dialogueHooksTriggered_;
 	private DialogueManager dialogueManager_;
 	private List<Rock> rocks_;
-
-	private DialogueHook CurrentDialogueHook
-	{
-		get { return dialogueHooks[currentDialogueHookIndex_]; }
-	}
 
 	// Initialization
 	public void Awake()
 	{
+		instance = this;
+
+		foreach (DialogueHook dialogueHook in dialogueHooks)
+			dialogueHook.ResetTrigger();
+
 		paused_ = false;
-		currentDialogueHookIndex_ = 0;
 		dialogueManager_ = GetComponent<DialogueManager>();
+		rocks_ = new List<Rock>();
 	}
 
 	// Public interface
@@ -66,13 +81,13 @@ public class Level : MonoBehaviour
 	{
 		paused_ = false;
 	}
-	public void OnGrab()
+	public void OnStoneGrabbed()
 	{
-		RunHookedDialogue(StoneCount, TurnStage.Grab);
+		RunHookedDialogue(Game.instance.board.StonesLeft, TurnStage.Grab);
 	}
-	public void OnRelease()
+	public void OnStoneReleased()
 	{
-		RunHookedDialogue(StoneCount, TurnStage.Release);
+		RunHookedDialogue(Game.instance.board.StonesLeft, TurnStage.Release);
 	}
 	public void OnDialogueHookFinished()
 	{
@@ -83,8 +98,11 @@ public class Level : MonoBehaviour
 	private void RunHookedDialogue(int stoneCount, TurnStage turnStage)
 	{
 		DialogueHook dialogueHook = GetDialogueHook(stoneCount, turnStage);
-		if (dialogueHook != null)
+		Debug.Log("Hook: " + dialogueHook);
+		if (dialogueHook != null && !dialogueHook.Triggered)
 		{
+			Debug.Log("Triggering dialogue");
+			dialogueHook.Trigger();
 			Pause();
 			dialogueManager_.BeginDialogue(dialogueHook.dialogue, OnDialogueHookFinished);
 		}
@@ -104,11 +122,7 @@ public class Level : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Q))
 			Game.instance.BeginBasicNim(15, Player.Player);
-		if (Input.GetKeyDown(KeyCode.A))
-			OnGrab();
-		if (Input.GetKeyDown(KeyCode.S))
-			OnRelease();
-		if (Input.GetKeyDown(KeyCode.Tab))
+		if (Input.GetKeyDown(KeyCode.Tab) && Game.instance.CanAdvanceTurn())
 			Game.instance.AdvanceTurn();
 	}
 }

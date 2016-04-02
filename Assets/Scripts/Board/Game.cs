@@ -85,11 +85,9 @@ public class Game : MonoBehaviour
 				ResetForNextTurn();
 				enemyHand.Inactive();
 
-				Debug.Log("Player turn");
 				playerHand.Reach(PlayerOnGrabRock);
 				break;
 			case State.OpponentTurn:
-				Debug.Log("Opponent turn");
 				ResetForNextTurn();
 				playerHand.Inactive();
 
@@ -102,6 +100,10 @@ public class Game : MonoBehaviour
 	}
 
 	// Public interface
+	public bool CanAdvanceTurn()
+	{
+		return takenRocks_ > 0;
+	}
 	public void AdvanceTurn()
 	{
 		switch (state_)
@@ -210,23 +212,29 @@ public class Game : MonoBehaviour
 	}
 	private void OpponentGrabRockAndRetract()
 	{
+		Level.instance.OnStoneGrabbed();
+
 		enemyHand.Grab();
 		enemyHand.setPilePos(board.opponentPile.transform.position);
 		enemyHand.Retract(OpponentReleaseRockAndPass);
 	}
 	private void OpponentReleaseRockAndPass()
 	{
+		Level.instance.OnStoneReleased();
+
 		enemyHand.Release();
 		AdvanceTurn();
 	}
 	private void PlayerOnGrabRock()
 	{
-		Debug.Log("Player grabbed a rock!");
+		Level.instance.OnStoneGrabbed();
+
 		playerHand.Retract(PlayerOnReleaseRock);
 	}
 	private void PlayerOnReleaseRock()
 	{
-		Debug.Log("Player released a rock!");
+		Level.instance.OnStoneReleased();
+
 		playerHand.Reach(PlayerOnGrabRock);
 	}
 }

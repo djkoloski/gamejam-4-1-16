@@ -27,8 +27,10 @@ public class EnemyHand : MonoBehaviour {
 		Retracting,
 	}
 
-	private State state_;
+	// Private variables
 	private Animator animator_;
+	private Rigidbody2D rigidbody_;
+	private State state_;
 	private Callback callback_;
 
 
@@ -76,36 +78,40 @@ public class EnemyHand : MonoBehaviour {
 		callback_ = null;
 	}
 
-	void Awake ()
+	// Initialization
+	public void Awake()
 	{
-		startPos = this.transform.position;
+		animator_ = GetComponent<Animator>();
+		rigidbody_ = GetComponent<Rigidbody2D>();
+		startPos = transform.position;
 		callback_ = null;
 	}
-
-	// Use this for initialization
-	void Start () {
-		animator_ = GetComponent<Animator>();
-	}
 	
-	// Update is called once per frame
-	void Update () {
+	// Update
+	public void Update()
+	{
+		if (Level.instance.Paused)
+		{
+			MoveUtil.AccelerateClamped2D(rigidbody_, Vector2.zero, accel, maxAccel);
+			return;
+		}
 
 		switch (state_)
 		{
 			case State.Inactive:
-				MoveUtil.AccelerateClampedToward2D(this.GetComponent<Rigidbody2D>(), startPos, accel, maxAccel, maxVel, timetoreach);
-				MoveUtil.ClampVelocity2D(this.GetComponent<Rigidbody2D>(), maxVel);
+				MoveUtil.AccelerateClampedToward2D(rigidbody_, startPos, accel, maxAccel, maxVel, timetoreach);
+				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
 				break;
 			case State.Reaching:
-				MoveUtil.AccelerateClampedToward2D(this.GetComponent<Rigidbody2D>(), goalPos, accel, maxAccel, maxVel, timetoreach);
-				MoveUtil.ClampVelocity2D(this.GetComponent<Rigidbody2D>(), maxVel);
-				if (Vector2.Distance(this.transform.position, goalPos) <= tolerance && callback_ != null)
+				MoveUtil.AccelerateClampedToward2D(rigidbody_, goalPos, accel, maxAccel, maxVel, timetoreach);
+				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
+				if (Vector2.Distance(transform.position, goalPos) <= tolerance && callback_ != null)
 					callback_();
 				break;
 			case State.Retracting:
-				MoveUtil.AccelerateClampedToward2D(this.GetComponent<Rigidbody2D>(), pilePos, accel, maxAccel, maxVel, timetoreach);
-				MoveUtil.ClampVelocity2D(this.GetComponent<Rigidbody2D>(), maxVel);
-				if (Vector2.Distance(this.transform.position, pilePos) <= tolerance && callback_ != null)
+				MoveUtil.AccelerateClampedToward2D(rigidbody_, pilePos, accel, maxAccel, maxVel, timetoreach);
+				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
+				if (Vector2.Distance(transform.position, pilePos) <= tolerance && callback_ != null)
 					callback_();
 				break;
 		}

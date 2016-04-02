@@ -27,10 +27,11 @@ public class PlayerHand : MonoBehaviour
 		Retracting,
 	}
 
-	private State state_;
+	// Private variables
+	private Rigidbody2D rigidbody_;
 	private Animator animator_;
+	private State state_;
 	private Callback callback_;
-
 
 	private void TransitionState(State newState)
 	{
@@ -80,36 +81,39 @@ public class PlayerHand : MonoBehaviour
 		callback_ = null;
 	}
 
-	void Awake()
+	// Initialization
+	public void Awake()
 	{
-		startPos = this.transform.position;
+		rigidbody_ = GetComponent<Rigidbody2D>();
+		animator_ = GetComponent<Animator>();
+		startPos = transform.position;
 		callback_ = null;
 	}
 
-	// Use this for initialization
-	void Start()
+	// Update
+	public void Update()
 	{
-		animator_ = GetComponent<Animator>();
-	}
+		if (Level.instance.Paused)
+		{
+			MoveUtil.AccelerateClamped2D(rigidbody_, Vector2.zero, accel, maxAccel);
+			return;
+		}
 
-	// Update is called once per frame
-	void Update()
-	{
 		Vector3 m2w = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 		switch (state_)
 		{
 			case State.Inactive:
-				MoveUtil.AccelerateClampedToward2D(this.GetComponent<Rigidbody2D>(), startPos, accel, maxAccel, maxVel, timetoreach);
-				MoveUtil.ClampVelocity2D(this.GetComponent<Rigidbody2D>(), maxVel);
+				MoveUtil.AccelerateClampedToward2D(rigidbody_, startPos, accel, maxAccel, maxVel, timetoreach);
+				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
 				break;
 			case State.Reaching:
 				goalPos = new Vector2(m2w.x, m2w.y);
 
-				MoveUtil.AccelerateClampedToward2D(this.GetComponent<Rigidbody2D>(), goalPos, accel, maxAccel, maxVel, timetoreach);
-				MoveUtil.ClampVelocity2D(this.GetComponent<Rigidbody2D>(), maxVel);
+				MoveUtil.AccelerateClampedToward2D(rigidbody_, goalPos, accel, maxAccel, maxVel, timetoreach);
+				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
 				
-				if (Vector2.Distance(this.transform.position, goalPos) <= tolerance && Input.GetMouseButtonDown(0) && callback_ != null)
+				if (Vector2.Distance(transform.position, goalPos) <= tolerance && Input.GetMouseButtonDown(0) && callback_ != null)
 				{
 					if (rockPicker.GrabRock())
 						callback_();
@@ -118,13 +122,13 @@ public class PlayerHand : MonoBehaviour
 			case State.Retracting:
 				goalPos = new Vector2(m2w.x, m2w.y);
 
-				MoveUtil.AccelerateClampedToward2D(this.GetComponent<Rigidbody2D>(), goalPos, accel, maxAccel, maxVel, timetoreach);
-				MoveUtil.ClampVelocity2D(this.GetComponent<Rigidbody2D>(), maxVel);
+				MoveUtil.AccelerateClampedToward2D(rigidbody_, goalPos, accel, maxAccel, maxVel, timetoreach);
+				MoveUtil.ClampVelocity2D(rigidbody_, maxVel);
 
 				if (Input.GetMouseButtonUp(0) && callback_ != null)
 				{
-					bool movedRock = rockPicker.ReleaseRock();
 					callback_();
+					bool movedRock = rockPicker.ReleaseRock();
 				}
 				
 				break;

@@ -16,15 +16,19 @@ public class Board : MonoBehaviour
 	{
 		get { return piles_; }
 	}
-	public bool AreAllPilesEmpty
+	public int StonesLeft
 	{
 		get
 		{
+			int total = 0;
 			foreach (Pile pile in piles_)
-				if (pile.NumRocks > 0)
-					return false;
-			return true;
+				total += pile.NumRocks;
+			return total;
 		}
+	}
+	public bool AreAllPilesEmpty
+	{
+		get { return StonesLeft == 0; }
 	}
 
 	// Private variables
