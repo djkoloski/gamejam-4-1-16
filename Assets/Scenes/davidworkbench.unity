@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011ddc05d28d0ac43aa99b4c293d04b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pileRadius: 0
+  pileRadius: 1
   board: {fileID: 512063741}
   playerHand: {fileID: 1830306168}
   enemyHand: {fileID: 1642454726}
@@ -352,7 +352,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].dialogueHooks.Array.data[0].dialogue.lines.Array.size
@@ -408,7 +408,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].rockCounts.Array.data[0]
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].startingPlayer
@@ -471,16 +471,32 @@ Prefab:
       value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
-      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].text
-      value: Ima kill ya
+      propertyPath: currentGameDefinitionIndex
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
-      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].letterPause
-      value: 0.025
+      propertyPath: gameDefinitions.Array.data[0].gameType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
-      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].speaker
+      propertyPath: gameDefinitions.Array.data[0].rockCounts.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].rockCounts.Array.data[2]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].mistakeChance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[1].introDialogue.lines.Array.data[0].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].speaker
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}

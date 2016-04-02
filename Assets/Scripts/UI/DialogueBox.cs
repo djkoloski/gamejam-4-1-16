@@ -21,7 +21,8 @@ public enum DialogueSpeaker
 	Grim,
 	Murderer,
 	Mother,
-	Teenager
+	Teenager,
+	Narrator
 }
 
 public static class DialogueSpeakerExtension
@@ -38,6 +39,8 @@ public static class DialogueSpeakerExtension
 				return "mother";
 			case DialogueSpeaker.Teenager:
 				return "teenager";
+			case DialogueSpeaker.Narrator:
+				return "narrator";
 			default:
 				throw new System.NotImplementedException();
 		}
@@ -90,33 +93,35 @@ public class DialogueBox : MonoBehaviour
 				break;
 			case State.Speaking:
 				SetDialogueLength(0);
-                switch(line_.speaker)
-                {
-                    case DialogueSpeaker.Grim:
-                        animator_.Play("speaking_bottom", 0);
-                        break;
-                    case DialogueSpeaker.Murderer:
-                    case DialogueSpeaker.Mother:
-                    case DialogueSpeaker.Teenager:
-                        animator_.Play("speaking_top", 0);
-                        break;
-                }
+				switch(line_.speaker)
+				{
+					case DialogueSpeaker.Grim:
+						animator_.Play("speaking_bottom", 0);
+						break;
+					case DialogueSpeaker.Murderer:
+					case DialogueSpeaker.Mother:
+					case DialogueSpeaker.Teenager:
+					case DialogueSpeaker.Narrator:
+						animator_.Play("speaking_top", 0);
+						break;
+				}
 
 				animator_.Play(line_.speaker.ID() + "_speak", 1);
 				break;
 			case State.Waiting:
 				SetDialogueLength(line_.text.Length);
-                switch (line_.speaker)
-                {
-                    case DialogueSpeaker.Grim:
-                        animator_.Play("waiting_bottom", 0);
-                        break;
-                    case DialogueSpeaker.Murderer:
-                    case DialogueSpeaker.Mother:
-                    case DialogueSpeaker.Teenager:
-                        animator_.Play("waiting_top", 0);
-                        break;
-                }
+				switch (line_.speaker)
+				{
+					case DialogueSpeaker.Grim:
+						animator_.Play("waiting_bottom", 0);
+						break;
+					case DialogueSpeaker.Murderer:
+					case DialogueSpeaker.Mother:
+					case DialogueSpeaker.Teenager:
+					case DialogueSpeaker.Narrator:
+						animator_.Play("waiting_top", 0);
+						break;
+				}
 				animator_.Play(line_.speaker.ID() + "_idle", 1);
 				break;
 			default:
