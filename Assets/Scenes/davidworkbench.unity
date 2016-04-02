@@ -221,7 +221,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+    - target: {fileID: 11464758, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 597404132}

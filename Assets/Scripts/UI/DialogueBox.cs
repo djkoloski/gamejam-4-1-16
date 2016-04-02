@@ -3,10 +3,17 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 [System.Serializable]
+public class Dialogue
+{
+	public List<DialogueLine> lines;
+}
+
+[System.Serializable]
 public class DialogueLine
 {
-	public float letterPause;
+	public DialogueSpeaker speaker;
 	public string text;
+	public float letterPause;
 }
 
 public enum DialogueSpeaker
@@ -45,7 +52,6 @@ public class DialogueBox : MonoBehaviour
 	// Private variables
 	private State state_;
 	private Animator animator_;
-	private DialogueSpeaker speaker_;
 	private DialogueLine line_;
 	private int dialogueLength_;
 	private Callback callback_;
@@ -55,7 +61,6 @@ public class DialogueBox : MonoBehaviour
 	public void Awake()
 	{
 		animator_ = GetComponent<Animator>();
-		speaker_ = DialogueSpeaker.Grim;
 		line_ = null;
 		dialogueLength_ = 0;
 		callback_ = null;
@@ -70,19 +75,18 @@ public class DialogueBox : MonoBehaviour
 		switch (state_)
 		{
 			case State.Inactive:
-				SetDialogueLength(0);
+				text.text = "";
 				animator_.Play("inactive", 0);
-				animator_.Play(speaker_.ID() + "_idle", 1);
 				break;
 			case State.Speaking:
 				SetDialogueLength(0);
 				animator_.Play("speaking", 0);
-				animator_.Play(speaker_.ID() + "_speak", 1);
+				animator_.Play(line_.speaker.ID() + "_speak", 1);
 				break;
 			case State.Waiting:
 				SetDialogueLength(line_.text.Length);
 				animator_.Play("waiting", 0);
-				animator_.Play(speaker_.ID() + "_idle", 1);
+				animator_.Play(line_.speaker.ID() + "_idle", 1);
 				break;
 			default:
 				throw new System.InvalidOperationException();
@@ -90,9 +94,8 @@ public class DialogueBox : MonoBehaviour
 	}
 
 	// Public interface
-	public void Speak(DialogueSpeaker speaker, DialogueLine line, Callback callback)
+	public void Speak(DialogueLine line, Callback callback)
 	{
-		speaker_ = speaker;
 		line_ = line;
 		callback_ = callback;
 		TransitionState(State.Speaking);
@@ -105,13 +108,6 @@ public class DialogueBox : MonoBehaviour
 	// Private interface
 	private void SetDialogueLength(int length)
 	{
-		if (line_ == null)
-		{
-			text.text = "";
-			dialogueLength_ = 0;
-			return;
-		}
-
 		dialogueLength_ = Mathf.Min(line_.text.Length, length);
 		text.text = line_.text.Substring(0, dialogueLength_).Replace("`", "");
 	}

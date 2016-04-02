@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 462550}
   - 114: {fileID: 11415344}
+  - 114: {fileID: 11464758}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -39,14 +40,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6350b69e2a64b84988383044c6301c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueHooks:
+  - turnStage: 0
+    stoneCount: 0
+    dialogue:
+      lines:
+      - speaker: 0
+        text: Is this the real life?
+        letterPause: 0.05
+      - speaker: 0
+        text: Is this just fantasy
+        letterPause: 0.025
+  - turnStage: 1
+    stoneCount: 0
+    dialogue:
+      lines:
+      - speaker: 0
+        text: Caught in a landslide
+        letterPause: 0.025
+      - speaker: 0
+        text: No escape from r`e`a`l`i`t`y`.
+        letterPause: 0.05
+  board: {fileID: 0}
+--- !u!114 &11464758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e178e2c7c86474195a11ecda9cd16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   dialogueBox: {fileID: 0}
-  dialogue:
-  - letterPause: 0.05
-    text: Do you east a```s```s``` ```?
-  - letterPause: 0.025
-    text: Of course I do!
-  - letterPause: 0.1
-    text: E`A`T` `T`H`A`T` `B`O`O`T`Y`.
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
