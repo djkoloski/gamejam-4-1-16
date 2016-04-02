@@ -39,6 +39,7 @@ public class Game : MonoBehaviour
 	private int takenRocks_;
 	private int maxAvailableRocks_;
 
+	private float opponentMistakeChance_;
 	private int opponentRocksToTake_;
 	private Pile opponentPileToTakeFrom_;
 
@@ -95,7 +96,11 @@ public class Game : MonoBehaviour
 				ResetForNextTurn();
 				playerHand.Inactive();
 
-				GetWorstMove(out opponentRocksToTake_, out opponentPileToTakeFrom_);
+				if (Random.value < opponentMistakeChance_)
+					GetWorstMove(out opponentRocksToTake_, out opponentPileToTakeFrom_);
+				else
+					GetBestMove(out opponentRocksToTake_, out opponentPileToTakeFrom_);
+
 				OpponentGrabNextRock();
 				break;
 			default:
@@ -143,6 +148,8 @@ public class Game : MonoBehaviour
 		board.Reset();
 		gameType_ = gameType;
 
+		opponentMistakeChance_ = mistakeChance;
+
 		if (rockCounts.Length == 1)
 		{
 			Pile pile = board.AddPile(Vector2.zero);
@@ -166,6 +173,8 @@ public class Game : MonoBehaviour
 				}
 			}
 		}
+
+		takenRocks_ = -1;
 
 		switch (startingPlayer)
 		{
@@ -197,6 +206,69 @@ public class Game : MonoBehaviour
 					rocksToTake = board.RocksLeft % 4;
 
 				break;
+			case GameType.RowNim:
+				rocksToTake = 0;
+
+				foreach (Pile pile in board.Piles)
+					rocksToTake ^= pile.NumRocks;
+
+				fromPile = null;
+				foreach (Pile pile in board.Piles)
+				{
+					if ((rocksToTake ^ pile.NumRocks) < pile.NumRocks)
+					{
+						fromPile = pile;
+						rocksToTake = pile.NumRocks - (rocksToTake ^ pile.NumRocks);
+						break;
+					}
+				}
+
+				if (fromPile == null)
+				{
+					// No pile can bring the nim-sum to 0
+					foreach (Pile pile in board.Piles)
+					{
+						if (pile.NumRocks > 0)
+						{
+							fromPile = pile;
+							rocksToTake = Mathf.FloorToInt(Random.value * pile.NumRocks) + 1;
+						}
+					}
+				}
+
+				break;
+			case GameType.FibonacciNim:
+				fromPile = board.Piles[0];
+
+				if (maxAvailableRocks_ >= fromPile.NumRocks)
+				{
+					rocksToTake = fromPile.NumRocks;
+					break;
+				}
+
+				int[] fibs = new int[]
+				{
+					1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+				};
+
+				rocksToTake = board.Piles[0].NumRocks;
+
+				while (rocksToTake > 0)
+				{
+					int nearestFib = 0;
+					while (fibs[nearestFib + 1] <= rocksToTake)
+						++nearestFib;
+
+					if (fibs[nearestFib] == rocksToTake && rocksToTake <= maxAvailableRocks_)
+						break;
+
+					rocksToTake -= fibs[nearestFib];
+				}
+
+				if (rocksToTake == 0)
+					rocksToTake = 1;
+
+				break;
 			default:
 				throw new System.InvalidOperationException();
 		}
@@ -217,6 +289,35 @@ public class Game : MonoBehaviour
 				// Go down to one more than the nearest multiple of 4
 				else
 					rocksToTake = (board.RocksLeft + 3) % 4;
+
+				break;
+			case GameType.RowNim:
+				GetBestMove(out rocksToTake, out fromPile);
+
+				int pileCount = 0;
+				foreach (Pile pile in board.Piles)
+				{
+					int rocksLeft = pile.NumRocks;
+					if (pile == fromPile)
+						rocksLeft -= rocksToTake;
+					if (rocksLeft > 1)
+						return;
+					if (rocksLeft == 1)
+						++pileCount;
+				}
+
+				if (pileCount % 2 == 0)
+					++rocksToTake;
+
+				break;
+			case GameType.FibonacciNim:
+				GetBestMove(out rocksToTake, out fromPile);
+
+				if (fromPile.NumRocks - rocksToTake <= 1)
+				{
+					rocksToTake = fromPile.NumRocks - 1;
+					break;
+				}
 
 				break;
 			default:
@@ -282,7 +383,10 @@ public class Game : MonoBehaviour
 				maxAvailableRocks_ = 9999;
 				break;
 			case GameType.FibonacciNim:
-				maxAvailableRocks_ = takenRocks_ * 2;
+				if (takenRocks_ == -1)
+					maxAvailableRocks_ = board.Piles[0].NumRocks - 1;
+				else
+					maxAvailableRocks_ = takenRocks_ * 2;
 				break;
 			default:
 				throw new System.InvalidOperationException();
@@ -295,6 +399,7 @@ public class Game : MonoBehaviour
 	{
 		if (opponentRocksToTake_ > 0)
 		{
+			Debug.Log("Grabbing a rock");
 			Rock rock = opponentPileToTakeFrom_.GetRandomRockInPile();
 			enemyHand.Reach(rock.transform, OpponentGrabRockAndRetract);
 		}
