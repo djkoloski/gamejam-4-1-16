@@ -28,7 +28,6 @@ public class Level : MonoBehaviour
 
 	// Public variables
 	public List<DialogueHook> dialogueHooks;
-	public Board board;
 
 	public bool Paused
 	{
@@ -43,6 +42,7 @@ public class Level : MonoBehaviour
 	private bool paused_;
 	private int currentDialogueHookIndex_;
 	private DialogueManager dialogueManager_;
+	private List<Rock> rocks_;
 
 	private DialogueHook CurrentDialogueHook
 	{
@@ -102,9 +102,13 @@ public class Level : MonoBehaviour
 	// Update
 	public void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Q))
+			Game.instance.BeginBasicNim(15, Player.Player);
 		if (Input.GetKeyDown(KeyCode.A))
 			OnGrab();
 		if (Input.GetKeyDown(KeyCode.S))
 			OnRelease();
+		if (Input.GetKeyDown(KeyCode.Tab))
+			Game.instance.AdvanceTurn();
 	}
 }
