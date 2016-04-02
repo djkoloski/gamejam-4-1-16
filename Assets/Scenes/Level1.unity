@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].introDialogue.lines.Array.size
@@ -250,11 +250,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].text
-      value: So, ``what were your last days like?
+      value: In this game, `` you may take 1, ``2, ``or 3 stones. ````The player who
+        takes the final stone is the winner.
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].letterPause
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].rockCounts.Array.data[0]
@@ -262,7 +263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].mistakeChance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].dialogueHooks.Array.data[0].rockCount
@@ -536,6 +537,18 @@ Prefab:
       propertyPath: gameDefinitions.Array.data[2].dialogueHooks.Array.data[4].dialogue.lines.Array.data[0].speaker
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].text
+      value: So, ``what were your last days like?
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].letterPause
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].speaker
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
   m_IsPrefabParent: 0
@@ -599,7 +612,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!1 &851006098
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,12 +828,54 @@ RectTransform:
   m_Children:
   - {fileID: 1920187903}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1474451251
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 306
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 229.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1583087709
 Prefab:
   m_ObjectHideFlags: 0
@@ -1000,6 +1055,10 @@ Prefab:
     - target: {fileID: 440662, guid: 2661a06e4e59cc44e8e808e183480481, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403334, guid: 2661a06e4e59cc44e8e808e183480481, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.77
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2661a06e4e59cc44e8e808e183480481, type: 2}
