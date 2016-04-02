@@ -352,7 +352,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].dialogueHooks.Array.data[0].dialogue.lines.Array.size
@@ -469,6 +469,18 @@ Prefab:
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].letterPause
       value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].text
+      value: Ima kill ya
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].letterPause
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].speaker
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
