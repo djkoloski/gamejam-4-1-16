@@ -316,7 +316,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].introDialogue.lines.Array.size
@@ -472,7 +472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].rockCounts.Array.data[0]
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].startingPlayer
@@ -501,19 +501,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].text
-      value: You're here quite early. Why did you do it?
+      value: In this game, `` you may take a number of stones up to twice the previous
+        number of stones taken.
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].letterPause
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].rockCounts.Array.data[0]
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].mistakeChance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].dialogueHooks.Array.data[0].rockCount
@@ -545,11 +546,11 @@ Prefab:
       objectReference: {fileID: 1183267247}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[2].rockCounts.Array.data[0]
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[2].mistakeChance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[2].dialogueHooks.Array.data[0].rockCount
@@ -573,11 +574,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[3].rockCounts.Array.data[0]
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[3].mistakeChance
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[3].dialogueHooks.Array.data[0].rockCount
@@ -601,7 +602,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[4].rockCounts.Array.data[0]
-      value: 15
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[4].mistakeChance
@@ -1001,6 +1002,35 @@ Prefab:
       propertyPath: gameDefinitions.Array.data[4].dialogueHooks.Array.data[4].dialogue.lines.Array.data[0].letterPause
       value: 0.025
       objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].text
+      value: The first player may take any number of stones, ``but may not take the
+        last. ````As always, ``the player who takes the final stone is the winner.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].letterPause
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[0].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[2].text
+      value: You're here quite early. Why did you do it?
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[2].letterPause
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[1].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: nextSceneName
+      value: PostLevel3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
   m_IsPrefabParent: 0
@@ -1065,6 +1095,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!1001 &993493595
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 306
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 229.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 484400, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 37effb1810e2cfb46b8c5ce0fcff8df4, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1033575336
 Prefab:
   m_ObjectHideFlags: 0
