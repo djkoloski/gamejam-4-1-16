@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.size
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[1].introDialogue.lines.Array.size
@@ -560,11 +560,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[3].text
-      value: So, ``what were your last days like?
+      value: 'Name: Marcus Richards '
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[3].letterPause
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[2].speaker
@@ -577,6 +577,80 @@ Prefab:
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: nextSceneName
       value: PostLevel1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[4].text
+      value: 'Date of Birth: May 4th, 1975'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[4].letterPause
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[5].text
+      value: 'Date of Death: August 26, 2006'
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[5].letterPause
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[6].text
+      value: 'Marcus Richards grew up in Lakeside, California with his family. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[6].letterPause
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[7].text
+      value: 'At the age of 28, Marcus was convicted of first-degree murder for killing
+        his ex girlfriend. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[7].letterPause
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[4].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[5].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[3].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[8].text
+      value: Marcus spent the remaining years of his life on Death Row, before finally
+        receiving his last meal and death sentence.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[8].letterPause
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[9].text
+      value: So, ``what were your last days like?
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[9].letterPause
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[6].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[7].speaker
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: gameDefinitions.Array.data[0].introDialogue.lines.Array.data[8].speaker
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
