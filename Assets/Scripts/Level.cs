@@ -46,6 +46,7 @@ public class Level : MonoBehaviour
 	public static Level instance;
 
 	// Public variables
+	public string nextSceneName;
 	public int currentGameDefinitionIndex;
 	public List<GameDef> gameDefinitions;
 
@@ -71,6 +72,10 @@ public class Level : MonoBehaviour
 		paused_ = false;
 		dialogueManager_ = GetComponent<DialogueManager>();
 		rocks_ = new List<Rock>();
+	}
+	public void Start()
+	{
+		StartGame();
 	}
 
 	// Public interface
@@ -110,7 +115,7 @@ public class Level : MonoBehaviour
 	}
 	public void OnAllGamesFinished()
 	{
-		Debug.Log("All games finished!");
+		UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneName);
 	}
 
 	// Private interface
@@ -154,11 +159,6 @@ public class Level : MonoBehaviour
 	// Update
 	public void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			StartGame();
-		}
-
 		if (Input.GetKeyDown(KeyCode.Tab) && Game.instance.CanAdvanceTurn())
 			Game.instance.AdvanceTurn();
 	}

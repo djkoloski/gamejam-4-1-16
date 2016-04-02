@@ -94,7 +94,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].rockCounts.Array.size
@@ -222,11 +222,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].rockCounts.Array.data[0]
-      value: 16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].startingPlayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
       propertyPath: gameDefinitions.Array.data[0].dialogueHooks.Array.data[0].rockCount
@@ -536,6 +536,10 @@ Prefab:
       propertyPath: gameDefinitions.Array.data[2].dialogueHooks.Array.data[4].dialogue.lines.Array.data[0].speaker
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11415344, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
+      propertyPath: nextSceneName
+      value: PostLevel1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce71331210762e940b5fef214f8bcbe5, type: 2}
   m_IsPrefabParent: 0
@@ -599,7 +603,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!1 &851006098
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +819,7 @@ RectTransform:
   m_Children:
   - {fileID: 1920187903}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
