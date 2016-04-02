@@ -80,12 +80,12 @@ public class DialogueBox : MonoBehaviour
 				break;
 			case State.Speaking:
 				SetDialogueLength(0);
-				animator_.Play("speaking", 0);
+				animator_.Play("speaking_bottom", 0);
 				animator_.Play(line_.speaker.ID() + "_speak", 1);
 				break;
 			case State.Waiting:
 				SetDialogueLength(line_.text.Length);
-				animator_.Play("waiting", 0);
+				animator_.Play("waiting_bottom", 0);
 				animator_.Play(line_.speaker.ID() + "_idle", 1);
 				break;
 			default:
