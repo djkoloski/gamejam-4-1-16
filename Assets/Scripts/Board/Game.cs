@@ -401,7 +401,6 @@ public class Game : MonoBehaviour
 	{
 		if (opponentRocksToTake_ > 0)
 		{
-			Debug.Log("Grabbing a rock");
 			Rock rock = opponentPileToTakeFrom_.GetRandomRockInPile();
 			enemyHand.Reach(rock.transform, OpponentGrabRockAndRetract);
 		}
