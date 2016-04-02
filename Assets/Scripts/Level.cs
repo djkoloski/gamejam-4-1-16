@@ -99,11 +99,9 @@ public class Level : MonoBehaviour
 		switch (winner)
 		{
 			case Player.Player:
-				Debug.Log("Player wins!");
 				AdvanceToNextGame();
 				break;
 			case Player.Opponent:
-				Debug.Log("Opponent wins!");
 				AdvanceToNextGame();
 				break;
 			default:

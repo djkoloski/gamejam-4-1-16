@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: bowls
+    uniqueID: 1977360927
+    locked: 0
+  - name: rocks
+    uniqueID: 2082541793
+    locked: 0
+  - name: hands
+    uniqueID: 830075867
+    locked: 0
