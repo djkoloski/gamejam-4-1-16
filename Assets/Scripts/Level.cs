@@ -46,6 +46,7 @@ public class Level : MonoBehaviour
 	public static Level instance;
 
 	// Public variables
+	public int currentGameDefinitionIndex;
 	public List<GameDef> gameDefinitions;
 
 	public bool Paused
@@ -54,14 +55,13 @@ public class Level : MonoBehaviour
 	}
 	public GameDef CurrentGameDefinition
 	{
-		get { return gameDefinitions[currentGameDefinitionIndex_]; }
+		get { return gameDefinitions[currentGameDefinitionIndex]; }
 	}
 
 	// Private variables
 	private bool paused_;
 	private DialogueManager dialogueManager_;
 	private List<Rock> rocks_;
-	private int currentGameDefinitionIndex_;
 
 	// Initialization
 	public void Awake()
@@ -71,7 +71,6 @@ public class Level : MonoBehaviour
 		paused_ = false;
 		dialogueManager_ = GetComponent<DialogueManager>();
 		rocks_ = new List<Rock>();
-		currentGameDefinitionIndex_ = 0;
 	}
 
 	// Public interface
@@ -138,13 +137,17 @@ public class Level : MonoBehaviour
 	}
 	private void AdvanceToNextGame()
 	{
-		++currentGameDefinitionIndex_;
-		if (currentGameDefinitionIndex_ >= gameDefinitions.Count)
+		++currentGameDefinitionIndex;
+		if (currentGameDefinitionIndex >= gameDefinitions.Count)
 			OnAllGamesFinished();
 		else
 			StartGame();
 	}
 	private void StartGame()
+	{
+		dialogueManager_.BeginDialogue(CurrentGameDefinition.introDialogue, OnIntroDialogueFinished);
+	}
+	private void OnIntroDialogueFinished()
 	{
 		Game.instance.BeginNim(CurrentGameDefinition.gameType, CurrentGameDefinition.rockCounts, CurrentGameDefinition.startingPlayer, CurrentGameDefinition.mistakeChance);
 	}
@@ -154,7 +157,6 @@ public class Level : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Q))
 		{
-			currentGameDefinitionIndex_ = 0;
 			StartGame();
 		}
 
