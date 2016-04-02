@@ -59,10 +59,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.1
-  acceleration: 15
-  maxAcceleration: 15
-  maxVelocity: 5
-  timeToReach: 0.25
+  acceleration: 60
+  maxAcceleration: 60
+  maxVelocity: 20
+  timeToReach: 0.1
 --- !u!212 &21202608
 SpriteRenderer:
   m_ObjectHideFlags: 1

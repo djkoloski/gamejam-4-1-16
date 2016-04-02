@@ -123,8 +123,8 @@ public class PlayerHand : MonoBehaviour
 
 				if (Input.GetMouseButtonUp(0) && callback_ != null)
 				{
-					if (rockPicker.ReleaseRock())
-						callback_();
+					bool movedRock = rockPicker.ReleaseRock();
+					callback_();
 				}
 				
 				break;

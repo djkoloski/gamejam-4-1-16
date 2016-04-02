@@ -91,11 +91,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rockPicker: {fileID: 11446186}
   pilePos: {x: 0, y: -3.75}
-  accel: 10
+  accel: 20
   maxAccel: 20000
   maxVel: 10000
   tolerance: 0.1
-  timetoreach: 0.25
+  timetoreach: 0.1
 --- !u!212 &21261796
 SpriteRenderer:
   m_ObjectHideFlags: 1

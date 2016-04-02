@@ -83,6 +83,7 @@ public class Game : MonoBehaviour
 		{
 			case State.PlayerTurn:
 				ResetForNextTurn();
+				enemyHand.Inactive();
 
 				Debug.Log("Player turn");
 				playerHand.Reach(PlayerOnGrabRock);
@@ -90,6 +91,7 @@ public class Game : MonoBehaviour
 			case State.OpponentTurn:
 				Debug.Log("Opponent turn");
 				ResetForNextTurn();
+				playerHand.Inactive();
 
 				Rock rock = board.Piles[0].GetRandomRockInPile();
 				enemyHand.Reach(rock.transform.position, OpponentGrabRockAndRetract);
@@ -216,7 +218,6 @@ public class Game : MonoBehaviour
 	{
 		enemyHand.Release();
 		AdvanceTurn();
-		enemyHand.Inactive();
 	}
 	private void PlayerOnGrabRock()
 	{
@@ -226,5 +227,6 @@ public class Game : MonoBehaviour
 	private void PlayerOnReleaseRock()
 	{
 		Debug.Log("Player released a rock!");
+		playerHand.Reach(PlayerOnGrabRock);
 	}
 }
