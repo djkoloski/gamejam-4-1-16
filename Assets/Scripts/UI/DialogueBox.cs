@@ -1,7 +1,148 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
+
+[System.Serializable]
+public class DialogueLine
+{
+	public float letterPause;
+	public string text;
+}
+
+public enum DialogueSpeaker
+{
+	Grim
+}
+
+public static class DialogueSpeakerExtension
+{
+	public static string ID(this DialogueSpeaker speaker)
+	{
+		switch (speaker)
+		{
+			case DialogueSpeaker.Grim:
+				return "grim";
+			default:
+				throw new System.NotImplementedException();
+		}
+	}
+}
 
 public class DialogueBox : MonoBehaviour
 {
+	// Types
+	public enum State
+	{
+		Inactive,
+		Speaking,
+		Waiting
+	}
+	public delegate void Callback();
 
+	// Public variables
+	public Text text;
+
+	// Private variables
+	private State state_;
+	private Animator animator_;
+	private DialogueSpeaker speaker_;
+	private DialogueLine line_;
+	private int dialogueLength_;
+	private Callback callback_;
+	private float timer_;
+
+	// Initialization
+	public void Awake()
+	{
+		animator_ = GetComponent<Animator>();
+		speaker_ = DialogueSpeaker.Grim;
+		line_ = null;
+		dialogueLength_ = 0;
+		callback_ = null;
+
+		TransitionState(State.Inactive);
+	}
+
+	// State transitions
+	private void TransitionState(State newState)
+	{
+		state_ = newState;
+		switch (state_)
+		{
+			case State.Inactive:
+				SetDialogueLength(0);
+				animator_.Play("inactive", 0);
+				animator_.Play(speaker_.ID() + "_idle", 1);
+				break;
+			case State.Speaking:
+				SetDialogueLength(0);
+				animator_.Play("speaking", 0);
+				animator_.Play(speaker_.ID() + "_speak", 1);
+				break;
+			case State.Waiting:
+				SetDialogueLength(line_.text.Length);
+				animator_.Play("waiting", 0);
+				animator_.Play(speaker_.ID() + "_idle", 1);
+				break;
+			default:
+				throw new System.InvalidOperationException();
+		}
+	}
+
+	// Public interface
+	public void Speak(DialogueSpeaker speaker, DialogueLine line, Callback callback)
+	{
+		speaker_ = speaker;
+		line_ = line;
+		callback_ = callback;
+		TransitionState(State.Speaking);
+	}
+	public void Hide()
+	{
+		TransitionState(State.Inactive);
+	}
+
+	// Private interface
+	private void SetDialogueLength(int length)
+	{
+		if (line_ == null)
+		{
+			text.text = "";
+			dialogueLength_ = 0;
+			return;
+		}
+
+		dialogueLength_ = Mathf.Min(line_.text.Length, length);
+		text.text = line_.text.Substring(0, dialogueLength_).Replace("`", "");
+	}
+
+	// Update
+	public void Update()
+	{
+		switch (state_)
+		{
+			case State.Inactive:
+				break;
+			case State.Speaking:
+				timer_ -= Time.deltaTime;
+				if (timer_ <= 0.0f)
+				{
+					SetDialogueLength(dialogueLength_ + 1);
+					if (dialogueLength_ >= line_.text.Length)
+						TransitionState(State.Waiting);
+					else
+						timer_ = line_.letterPause;
+				}
+
+				if (Input.GetKeyDown(KeyCode.Return))
+					TransitionState(State.Waiting);
+				break;
+			case State.Waiting:
+				if (Input.GetKeyDown(KeyCode.Return))
+					callback_();
+				break;
+			default:
+				throw new System.InvalidOperationException();
+		}
+	}
 }
