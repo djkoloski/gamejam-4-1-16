@@ -117,6 +117,8 @@ public class Game : MonoBehaviour
 	{
 		if (board.RocksLeft == 0)
 		{
+			playerHand.Inactive();
+			enemyHand.Inactive();
 			switch (state_)
 			{
 				case State.PlayerTurn:
